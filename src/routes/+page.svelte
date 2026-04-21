@@ -117,7 +117,7 @@
 <!-- Container 2-->
 <div class="flex flex-col px-6 md:px-12 lg:px-16 w-full mx-auto pb-4 mt-2 md:mt-4">
 
-    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10 border-b border-gray-800 pb-4 mb-6 w-full">
+    <div class="flex overflow-auto no-scrollbar justify-start md:justify-center items-center gap-6 md:gap-10 border-b border-gray-800 pb-4 mb-6 w-full">
         
         <button 
             onclick={() => changeTab('projects')}
@@ -153,7 +153,7 @@
             onclick={() => changeTab('courses')}
             class="text-lg md:text-xl font-serif tracking-wide transition-all duration-300 relative {activeTab === 'courses' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}"
         >
-            Courses & Certs
+            Education & Certifications
             {#if activeTab === 'courses'}
                 <div class="absolute -bottom-[17px] left-0 w-full h-0.5 bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
             {/if}
@@ -251,24 +251,47 @@
 {/if}
 
             {#if activeTab === 'courses'}
-                {#each data.recentCourses as course}
-                    <a in:fade={{duration: 300}} href="/courses/{course.slug}" class="snap-center shrink-0 w-[300px] md:w-[380px] group relative rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 hover:border-purple-500/50 transition-all duration-500 flex flex-col h-[400px] md:h-[440px]">
+                
+                {#each data.recentFormalEdu || [] as edu}
+                    <a in:fade={{duration: 300}} href="/abouts/education" class="snap-center shrink-0 w-[300px] md:w-[380px] group relative rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 hover:border-purple-500/50 transition-all duration-500 flex flex-col h-[400px] md:h-[440px]">
                         <div class="absolute top-4 left-4 z-10 bg-gray-900/80 backdrop-blur-md border border-gray-700/50 text-purple-400 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Course
+                            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Formal Education
                         </div>
-                        <div class="w-full h-52 md:h-60 bg-gray-800 overflow-hidden shrink-0">
-                            <img src={course.thumbnailUrl} alt={course.title} class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                        
+                        <div class="w-full h-52 md:h-60 bg-gray-800 overflow-hidden shrink-0 flex items-center justify-center p-8">
+                            <img src={edu.logo} alt={edu.institution} class="w-32 h-32 object-contain opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" onerror={(e) => e.currentTarget.style.display = 'none'}>
                         </div>
+                        
                         <div class="p-6 flex flex-col flex-grow justify-start">
-                            <p class="text-gray-400 text-xs mb-3 font-mono">
-                                {new Date(course.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                            </p>
+                            <p class="text-gray-400 text-xs mb-3 font-mono">{edu.date}</p>
                             <h4 class="text-xl md:text-2xl font-serif text-gray-200 group-hover:text-purple-400 transition-colors line-clamp-2 leading-tight">
-                                {course.title}
+                                {edu.institution}
                             </h4>
+                            <p class="text-sm text-gray-500 line-clamp-2 mt-2">{edu.degree}</p>
                         </div>
                     </a>
                 {/each}
+
+                {#each data.recentCerts || [] as cert}
+                    <a in:fade={{duration: 300}} href="/abouts/education" class="snap-center shrink-0 w-[300px] md:w-[380px] group relative rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 hover:border-purple-500/50 transition-all duration-500 flex flex-col h-[400px] md:h-[440px]">
+                        <div class="absolute top-4 left-4 z-10 bg-gray-900/80 backdrop-blur-md border border-gray-700/50 text-purple-400 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Certification
+                        </div>
+                        
+                        <div class="w-full h-52 md:h-60 bg-gray-800 overflow-hidden shrink-0 flex items-center justify-center p-8">
+                            <img src={cert.logo} alt={cert.title} class="w-32 h-32 object-contain opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" onerror={(e) => e.currentTarget.style.display = 'none'}>
+                        </div>
+                        
+                        <div class="p-6 flex flex-col flex-grow justify-start">
+                            <p class="text-gray-400 text-xs mb-3 font-mono">{cert.date}</p>
+                            <h4 class="text-xl md:text-2xl font-serif text-gray-200 group-hover:text-purple-400 transition-colors line-clamp-2 leading-tight">
+                                {cert.title}
+                            </h4>
+                            <p class="text-sm text-gray-500 line-clamp-2 mt-2">{cert.issuer}</p>
+                        </div>
+                    </a>
+                {/each}
+
             {/if}
 
         </div> <button 

@@ -15,9 +15,9 @@ export const load: PageServerLoad = async () => {
             articles.push({
                 slug,
                 title: file.metadata.title || 'Untitled Article',
-                // Gunakan publishedDate sesuai format Bapak
+
                 date: file.metadata.publishedDate || new Date().toISOString(),
-                // Gunakan poster sesuai format Bapak
+
                 thumbnailUrl: file.metadata.poster || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop'
             });
         }
@@ -55,29 +55,28 @@ export const load: PageServerLoad = async () => {
     }
     recentMilestones = recentMilestones.slice(0, 5);
 
-    const courseFiles = import.meta.glob('/src/contents/courses/*.md', { eager: true });
-    let courses = [];
+    const educationData = import.meta.glob('/src/contents/abouts/education.md', { eager: true });
+    
+    let recentFormalEdu: any[] = [];
+    let recentCerts: any[] = [];
 
-    for (const path in courseFiles) {
-      const file = courseFiles[path] as any;
-      const slug = path.split('/').pop()?.replace('.md', '');
-
-      if (file && file.metadata) {
-        courses.push({
-          slug,
-          title: file.metadata.title || 'Untitled Courses',
-          date: file.metadata.publishedDate || new Date().toISOString(),
-          thumbnailUrl: file.metadata.poster || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop'
-        });
-      }
+    for (const path in educationData) {
+        const file = educationData[path] as any;
+        if (file && file.metadata) {
+            if (file.metadata.formal_education) {
+                recentFormalEdu = file.metadata.formal_education.slice(0, 1);
+            }
+            if (file.metadata.certifications) {
+                recentCerts = file.metadata.certifications.slice(0, 4);
+            }
+        }
     }
-    courses.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    const recentCourses = courses.slice(0.5);
 
     return {
         recentArticles,
         recentProjects,
         recentMilestones,
-        recentCourses
+        recentFormalEdu,
+        recentCerts
     };
 };

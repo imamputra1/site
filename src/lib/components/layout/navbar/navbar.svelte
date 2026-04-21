@@ -60,10 +60,10 @@
                     <circle cx="6" cy="18" r="3"></circle>
                     <path d="M18 9a9 9 0 0 1-9 9"></path>
                 </svg>
-                main
+                GITHUB
             </a>
         </div>
-        <p>-- GITHUB --</p>
+        <p> CONTACT VIA EMAIL</p>
     </div>
     <div class="flex items-center justify-between gap-20 overflow-x-auto px-2 py-3 leading-none lg:px-0 lg:py-0">
         <ul class="flex items-center">
@@ -94,7 +94,7 @@
                 target="_blank"
                 rel="noreferrer"
                 data-umami-event="social-link"
-                data-umami-event-platform="github">Imam Putra</a
+                data-umami-event-platform="github">a.i.syahputra@gmail.com</a
             >
         </div>
     </div>
