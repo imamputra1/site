@@ -1,0 +1,167 @@
+<script lang="ts">
+    import { MediaQuery } from 'svelte/reactivity';
+
+    import { PUBLIC_UMAMI_TRACKING_ID } from '$env/static/public';
+
+    import '../app.css';
+    import { dev } from '$app/environment';
+    import Header from '$lib/components/layout/header/header.svelte';
+    import Navbar from '$lib/components/layout/navbar/navbar.svelte';
+
+    let { children } = $props();
+
+    let dragging = $state(false);
+    let isFullscreen = $state(false);
+    let offset = $state({ x: 0, y: 0 });
+    let position = $state({ x: 0, y: 0 });
+    let containerElement = $state<HTMLElement | null>(null);
+    let isMobile = $derived(new MediaQuery('(max-width: 500px)').current);
+
+    function toggleFullscreen() {
+        if (!isFullscreen) containerElement?.requestFullscreen();
+        else {
+            document.exitFullscreen();
+            position = { x: 0, y: 0 };
+        }
+        isFullscreen = !isFullscreen;
+    }
+
+    function onMouseDown(e: MouseEvent) {
+        dragging = true;
+        offset = { x: e.clientX - position.x, y: e.clientY - position.y };
+    }
+
+    $effect(() => {
+        const controller = new AbortController();
+
+        const handleMouseUp = () => (dragging = false);
+
+        const handleMouseMove = (e: MouseEvent) => {
+            if (dragging) position = { x: e.clientX - offset.x, y: e.clientY - offset.y };
+        };
+
+        const handleFullscreenChange = () => {
+            if (!document.fullscreenElement) isFullscreen = false;
+        };
+
+        window.addEventListener('mouseup', handleMouseUp, { signal: controller.signal });
+        window.addEventListener('mousemove', handleMouseMove, { signal: controller.signal });
+        document.addEventListener('fullscreenchange', handleFullscreenChange, { signal: controller.signal });
+
+        return () => controller.abort();
+    });
+
+    $effect(() => {
+        if (!isMobile) return;
+
+        position = { x: 0, y: 0 };
+    });
+</script>
+
+<svelte:head>
+    {#if !dev}
+        <script defer src="https://cloud.umami.is/script.js" data-website-id={PUBLIC_UMAMI_TRACKING_ID}></script>
+    {/if}
+</svelte:head>
+
+<div class="fixed inset-0 z-[-1] bg-black overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent z-10 h-1/2"></div>
+    <div class="grid-plane absolute top-1/4 left-[-50%] w-[200%] h-[150%]"></div>
+</div>
+
+<main
+    bind:this={containerElement}
+    data-fullscreen={isFullscreen || isMobile}
+    class="from-ash-800 to-ash-700 z-10 flex flex-col overflow-hidden rounded-xl bg-linear-to-tr bg-black/90 backdrop-blur-sm h-[85dvh] w-[95dvw] md:h-[75dvh] md:w-[70dvw] data-[fullscreen=true]:rounded-none data-[fullscreen=true]:h-dvh data-[fullscreen=true]:w-dvw"
+    lass:container-shadow={!isFullscreen || !isMobile}
+    style:transform="translate({position.x}px, {position.y}px)"
+    style:transition={dragging ? 'none' : 'all 0.2s ease-out'}
+>
+    <Header {isFullscreen} {onMouseDown} {toggleFullscreen} />
+    
+    <div class="flex-1 overflow-y-auto no-scrollbar">
+        {@render children()}
+    </div>
+    
+    <Navbar />
+</main>
+
+
+<style>
+    /* CSS Grid Biru 3b1b */
+    .grid-plane {
+        background-image: 
+            linear-gradient(to right, rgba(14, 165, 233, 0.4) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(14, 165, 233, 0.4) 1px, transparent 1px);
+        background-size: 60px 60px;
+        transform-origin: top center;
+        transform: perspective(800px) rotateX(70deg);
+        animation: moveGrid 3s linear infinite;
+    }
+
+    @keyframes moveGrid {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 60px; }
+    }
+
+    /* SURGERY: Menghilangkan Scrollbar secara visual tapi tetap bisa discroll */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    /* Kembalikan CSS Shadow bawaan Anda jika sebelumnya terhapus */
+    .container-shadow {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* CSS Grid Biru 3b1b */
+    .grid-plane {
+        background-image: 
+            linear-gradient(to right, rgba(14, 165, 233, 0.4) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(14, 165, 233, 0.4) 1px, transparent 1px);
+        background-size: 60px 60px;
+        transform-origin: top center;
+        transform: perspective(800px) rotateX(70deg);
+        animation: moveGrid 3s linear infinite;
+    }
+
+    @keyframes moveGrid {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 60px; }
+    }
+
+    /* SURGERY: Menghilangkan Scrollbar secara visual tapi tetap bisa discroll */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    /* Kembalikan CSS Shadow bawaan Anda jika sebelumnya terhapus */
+    .container-shadow {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* =========================================
+       CSS BARU UNTUK FOOTER (MAGIC NETWORK)
+       ========================================= */
+       
+    /* Sihir CSS untuk membuat pola jaringan (network nodes) */
+    .magic-network-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L80 23.09V69.28L40 92.38L0 69.28V23.09L40 0Z' fill='none' stroke='%23334155' stroke-width='0.5'/%3E%3Ccircle cx='40' cy='0' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='80' cy='23.09' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='80' cy='69.28' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='40' cy='92.38' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='0' cy='69.28' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='0' cy='23.09' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3C/svg%3E");
+        background-size: 80px 80px;
+        animation: pan-network 40s linear infinite;
+    }
+
+    /* Keyframes untuk pergerakan mulus pola footer */
+    @keyframes pan-network {
+        0% { background-position: 0 0; }
+        100% { background-position: 160px 160px; }
+    }
+</style>
