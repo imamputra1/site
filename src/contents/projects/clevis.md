@@ -4,10 +4,11 @@ description: Clevis is a cutting-edge mobile application powered by React Native
 poster: /projects/clevis.webp
 techstack:
   - React Native
+playstore_url: 'https://play.google.com/store/apps/details?id=com.alawaelsky.clevis&pcampaignid=web_share'
+appstore_url: 'https://apps.apple.com/sa/app/clevis-vendor/id6460821239'
 ---
 
 Clevis, our cutting-edge mobile application, redefines the way you approach daily tasks such as laundry and car repairs. Merging the power of React Native with the aesthetic finesse of Tailwind CSS, Clevis delivers a seamless and intuitive experience, allowing you to effortlessly order, track, and manage essential services from the palm of your hand.
-[Download on Play Store](https://play.google.com/store/apps/details?id=com.alawaelsky.clevis&pcampaignid=web_share), [Download on App Store](https://apps.apple.com/sa/app/clevis-vendor/id6460821239)
 
 ## Features
 

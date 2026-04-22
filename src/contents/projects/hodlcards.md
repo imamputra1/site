@@ -4,10 +4,13 @@ description: Hodlcards is a unique website that enables users to mint NFTs repre
 poster: /projects/hodlcards.webp
 techstack:
   - React
+preview_url: 'https://xcards.gg/'
+preview_status: 'public' # Pilihan: 'public', 'dns_issue', 'maintenance'
+source_url: 'https://github.com/wiscaksono/agenone'
+source_status: 'private' # Pilihan: 'public', 'private'
 ---
 
 Embark on a unique journey with HodlCards, a revolutionary website bridging the gap between NFTs and physical poker decks. Developed with precision using React, Tailwind CSS, and the dynamic React Slick library, HodlCards offers an immersive experience for crypto enthusiasts. Each minted NFT opens doors to an exclusive Discord community and guarantees regular whitelist spots for exciting crypto ventures. Engage with the platform's interactive spinwheel game, where every spin holds the chance to win real poker decks.
-[Preview](https://xcards.gg/).
 
 ## Features
 

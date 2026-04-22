@@ -4,10 +4,13 @@ description: This is a simple project that connects to the HackerNews API and di
 poster: /projects/hackernews.webp
 techstack:
   - React
+preview_url: 'https://hackernews.wiscaksono.com'
+preview_status: 'public' # Pilihan: 'public', 'dns_issue', 'maintenance'
+source_url: 'https://github.com/wiscaksono/hackernews'
+source_status: 'public' # Pilihan: 'public', 'private'
 ---
 
 Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by the investment fund and startup incubator Y Combinator. In general, content that can be submitted is defined as "anything that gratifies one's intellectual curiosity.
-[Preview](https://hackernews.wiscaksono.com), [Source code](https://github.com/wiscaksono/hackernews)
 
 ## Features
 

@@ -1,5 +1,5 @@
 ---
-title: 03. WORK_EXPERIENCE
+title: WORK EXPERIENCE
 experiences:
   - role: Business Development Analyst
     company: Cipta Website
@@ -18,7 +18,7 @@ experiences:
   - role: Founder & Operations
     company: Angkut Ternak
     type: Self-employed
-    date: Jan 2024 - Present
+    date: Dec 2023 - Jul 2025 · 1yr 8 mos
     location: Yogyakarta, Indonesia · Hybrid
     description: 'Built and scaled a livestock transportation platform. Navigated early-stage startup challenges including market validation, user acquisition, and operational logistics. Pitched to over 50 investors and led the team through the Innovative Academy accelerator program.'
     skills:
@@ -28,4 +28,17 @@ experiences:
       - Business Strategy
       - Pitching
     logo: /abouts/works/at.png
+
+  - role: Store Supervisor
+    company: Samakarsa Coffee & Tea
+    type: Hybrid
+    date: Jun 2022 - Jan 2023 · 8 mos
+    location: Yogyakarta, Indonesia · Hybrid
+    description: 'Took a very hands-on approach to daily retail operations, including checking physical inventory, managing stock levels, and ensuring promotional items were well-placed. Responsible for tracking daily transactions and helping prepare accurate monthly sales reports, ensuring operational data was always reliable.'
+    skills:
+      - Retail Operations
+      - Inventory Management
+      - Sales Reporting
+      - Attention to Detail    
+    logo: /abouts/works/sm.png
 ---

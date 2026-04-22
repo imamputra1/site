@@ -4,10 +4,13 @@ description: Embark on a journey with BigFriend, a collaborative community of co
 poster: /projects/bigfriend.webp
 technology:
   - React
+preview_url: 'https://bigfriend.fr/'
+preview_status: 'public' # Pilihan: 'public', 'dns_issue', 'maintenance'
+source_url: ''
+source_status: 'private' # Pilihan: 'public', 'private'
 ---
 
 BigFriend stands as a community fostering collaboration among communication agencies and consulting firms, offering dedicated advice and support. Dive into the website to discover their array of services and explore a rich blog filled with insightful articles on communication and marketing topics.
-[Preview](https://bigfriend.fr/)
 
 ## Features
 

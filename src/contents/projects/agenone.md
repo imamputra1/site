@@ -4,10 +4,13 @@ description: Experience the epitome of digital innovation with Agenone, a dynami
 poster: /projects/agenone.webp
 techstack:
   - Next
+preview_url: 'https://agenone.wiscaksono.com'
+preview_status: 'public' # Pilihan: 'public', 'dns_issue', 'maintenance'
+source_url: 'https://github.com/wiscaksono/agenone'
+source_status: 'private' # Pilihan: 'public', 'private'
 ---
 
 Agenone, a groundbreaking digital agency landing website, unveils a captivating hero section, a comprehensive services showcase, an expertise statistic, a portfolio of notable projects, client testimonials, and an inviting call-to-action. Step into the future of digital excellence with Agenone.
-[Preview](https://agenone.wiscaksono.com), [Source code](https://github.com/wiscaksono/agenone).
 
 ## Stack
 

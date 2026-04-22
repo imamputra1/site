@@ -4,6 +4,10 @@ description: Blue Bank is a cutting-edge mobile banking application developed us
 poster: /projects/blue-bank.webp
 techstack:
   - React Native
+preview_url: 'https://agenone.wiscaksono.com'
+preview_status: 'dns_issue' # Pilihan: 'public', 'dns_issue', 'maintenance'
+source_url: 'https://github.com/wiscaksono/agenone'
+source_status: 'private' # Pilihan: 'public', 'private'
 ---
 
 Blue Bank is a feature-rich mobile banking app designed to simplify your banking experience. [GitHub](https://github.com/wiscaksono/blue-bank)

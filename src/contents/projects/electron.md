@@ -4,10 +4,13 @@ description: "Electron is a data-driven platform that harnesses information from
 poster: /projects/electron.webp
 techstack:
   - React
+preview_url: 'https://electron.meteory.eu/'
+preview_status: 'public' # Pilihan: 'public', 'dns_issue', 'maintenance'
+source_url: 'https://github.com/wiscaksono/agenone'
+source_status: 'private' # Pilihan: 'public', 'private'
 ---
 
 Electron stands at the forefront, harnessing data from satellites, ground sensors, and weather models to shed light on pivotal environmental metrics. From carbon emissions to air quality, Electron's platform serves governments, businesses, and NGOs, offering a technology-rich experience that transforms data into actionable insights.
-[Preview](https://electron.meteory.eu/).
 
 ## Features
 

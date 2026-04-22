@@ -4,10 +4,11 @@ description: Explore the digital gateway to FKM Mobilité, a compassionate trans
 poster: /projects/fkm-mobilite.webp
 techstack:
   - Next
+preview_url: 'https://fkmmobilite.fr/'
+preview_status: 'public' # Pilihan: 'public', 'dns_issue', 'maintenance'
 ---
 
 Welcome to the virtual hub of FKM Mobilité, a trailblazing transportation company designed to meet the unique needs of individuals with disabilities. Founded by Nadia Aftis and Bentaleb Khelil, both parents to children with disabilities, the company emerged from a personal mission to overcome the challenges of securing accessible transportation. FKM Mobilité is steadfast in its commitment to delivering safe, comfortable, and reliable transportation services, aiming to empower individuals with disabilities to seamlessly participate in all facets of life.
-[Preview](https://fkmmobilite.fr/).
 
 ## Features
 
