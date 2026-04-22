@@ -11,7 +11,7 @@
 		milestones:
 			"These aren't about trophies. They're about the process: late nights, failed first attempts, and teammates who pushed me harder. From competitions to campus programs like Innovative Academy, they taught me to stay consistent under pressure.",
 		education:
-			' graduated in Philosophy from UGM, where I learned to break problems down to first principles. I built the technical side myself, course by course, based on what I needed: Google Data Analytics, Data Mining from the University of Michigan, Financial Engineering and Risk Management from Columbia University, and Machine Learning from Stanford and DeepLearning.AI via Coursera. I learn to close real gaps, not to collect certificates.'
+			'B.A. in Philosophy, Universitas Gadjah Mada. I built my technical skills as I needed them — Google Data Analytics and Data Mining (University of Michigan), Financial Engineering and Risk Management (Columbia), and Machine Learning (Stanford & DeepLearning.AI). I took them to solve real problems, not to collect certificates.'
 	};
 
 	let sliderContainer: HTMLElement | null = $state(null);
