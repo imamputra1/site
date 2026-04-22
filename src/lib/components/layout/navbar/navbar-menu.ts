@@ -22,7 +22,7 @@ export const navbarMenu = [
 	//},
   {
 		title: 'abouts',
-		href: '/abouts',
+		href: '/abouts/work',
 		key: 'a'
 	},
   //{

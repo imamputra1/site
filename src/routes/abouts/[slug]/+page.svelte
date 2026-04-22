@@ -59,10 +59,17 @@
 	function toggleSkills(id: string) {
 		expandedSkills[id] = !expandedSkills[id];
 	}
+
+	let expandedDesc = $state<Record<number, boolean>>({});
+
+	function toggleDesc(index: number) {
+		expandedDesc[index] = !expandedDesc[index];
+	}
 </script>
 
 <Metadata title={data.meta.title + ' | Imam Putra'} description={data.meta.description} />
 
+<!-- Milestones -->
 {#if page.params.slug === 'milestone'}
 	<div in:fade={{duration: 400}} class="w-full">
         <p class="text-gray-400 font-sans text-lg mb-8 pt-1">
@@ -129,6 +136,7 @@
 		</div>
 	</div>
 
+<!-- Education -->
 {:else if page.params.slug === 'education'}
     <div in:fade={{duration: 400}} class="w-full">
     
@@ -284,6 +292,83 @@
                     </div>
                 </div>
             {/each}
+        </div>
+        
+    </div>
+
+<!-- Work -->
+{:else if page.params.slug === 'work'}
+    <div in:fade={{duration: 400}} class="w-full">
+        
+        <div class="mb-6">
+            <h2 class="text-3xl font-serif text-white/90 uppercase tracking-widest">
+                WORK & INTERNSHIP EXPERIENCE
+            </h2>
+        </div>
+
+        <div class="w-full h-px bg-gray-800/60 mb-10"></div>
+
+        <div class="w-full mb-8">
+            <div class="flex flex-col w-full">
+                {#each data.meta.experiences || [] as job, i}
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-6 py-5 {i !== 0 ? 'border-t border-gray-800/60' : 'pt-0'}">
+                        
+                        <div class="w-15 h-15 md:w-30 md:h-30 shrink-0 mt-1 bg-white/5 rounded-md p-1 border border-gray-700/50">
+                            <img src={job.logo} alt={job.company} class="w-full h-full object-contain" onerror={(e) => e.currentTarget.style.display = 'none'} />
+                        </div>
+
+                        <div class="flex-1 flex flex-col">
+                            <h4 class="text-xl font-semibold text-gray-100">{job.role}</h4>
+                            <p class="text-gray-200 text-sm md:text-base mt-1">{job.company} · {job.type}</p>
+                            
+                            <p class="text-gray-500 text-sm mt-1">{job.date}</p>
+                            <p class="text-gray-500 text-sm mt-0.5">{job.location}</p>
+
+                            {#if job.description}
+                                <div class="mt-4 text-sm md:text-base text-gray-400 leading-relaxed md:text-justify">
+                                    {#if job.description.length <= 250 || expandedDesc[i]}
+                                        {job.description}
+                                        {#if job.description.length > 250}
+                                            <button onclick={() => toggleDesc(i)} class="text-gray-500 hover:text-white font-medium ml-1 transition-colors">show less</button>
+                                        {/if}
+                                    {:else}
+                                        {job.description.slice(0, 250)}<span class="text-gray-500">...</span>
+                                        <button onclick={() => toggleDesc(i)} class="text-gray-300 hover:text-white font-medium ml-1 transition-colors">more detail</button>
+                                    {/if}
+                                </div>
+                            {/if}
+                            {#if job.skills && job.skills.length > 0}
+                                <div class="mt-1 pt-1 border-t border-gray-800/30">
+                                    <div class="flex items-start gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mt-[3px] shrink-0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        <div class="text-gray-300 text-sm font-bold leading-relaxed">
+                                            
+                                            {#if job.skills.length <= 2 || expandedSkills[`work-${i}`]}
+                                                {job.skills.join(', ')}
+                                                
+                                                {#if job.skills.length > 2}
+                                                    <button onclick={() => toggleSkills(`work-${i}`)} class="text-gray-500 hover:text-white ml-1 font-normal transition-colors">&middot; hide</button>
+                                                {/if}
+                                            
+                                            {:else}
+                                                {job.skills.slice(0, 2).join(', ')} dan 
+                                                <button onclick={() => toggleSkills(`work-${i}`)} class="text-gray-400 hover:text-white hover:underline transition-colors font-extrabold">
+                                                    +{job.skills.length - 2} Skills
+                                                </button>
+                                            {/if}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {/if}
+
+                            <div class="mt-4">
+                                </div>
+
+                        </div>
+                    </div>
+                {/each}
+            </div>            
         </div>
         
     </div>
