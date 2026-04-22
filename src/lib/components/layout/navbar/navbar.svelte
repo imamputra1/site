@@ -89,13 +89,15 @@
         </ul>
         <div class="not-sr-only hidden items-center gap-2 lg:flex">
             <a
-                class="bg-ash-300 shrink-0 px-2 py-0.5 leading-none text-black"
-                href="https://github.com/imamputra1"
+                class="bg-ash-300 shrink-0 px-2 py-0.5 leading-none text-black hover:bg-white transition-colors"
+                href="mailto:a.i.syahputra@gmail.com?subject=Connecting%20from%20your%20Portfolio&body=Halo%20Imam,%0A%0ASaya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut%20mengenai..."
                 target="_blank"
                 rel="noreferrer"
-                data-umami-event="social-link"
-                data-umami-event-platform="github">a.i.syahputra@gmail.com</a
+                data-umami-event="email-link"
+                data-umami-event-platform="email"
             >
+                a.i.syahputra@gmail.com
+            </a>
         </div>
     </div>
 </nav>

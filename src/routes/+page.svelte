@@ -1,13 +1,13 @@
 <script lang="ts">
 	let { data } = $props();
 
-	let activeTab = $state('honors');
+	let activeTab = $state('milestones');
 
     const tabNarratives = {
         projects: "I build things because something needs fixing. From low-level routing to full-stack apps, each project started small, broke a couple times, and got better with real users. It's not perfect code, it's just how I learn by shipping.",
         articles: "I write to think more clearly. Here I share my notes on algorithmic systems, software architecture, and the tech decisions that actually matter in production. Some are deep dives, some are just questions I'm still working through.",
-        honors: "These aren't about trophies. They're about the process: late nights, failed first attempts, and teammates who pushed me harder. From competitions to campus programs like Innovative Academy, they taught me to stay consistent under pressure.",
-        courses: " graduated in Philosophy from UGM, where I learned to break problems down to first principles. I built the technical side myself, course by course, based on what I needed: Google Data Analytics, Data Mining from the University of Michigan, Financial Engineering and Risk Management from Columbia University, and Machine Learning from Stanford and DeepLearning.AI via Coursera. I learn to close real gaps, not to collect certificates."
+        milestones: "These aren't about trophies. They're about the process: late nights, failed first attempts, and teammates who pushed me harder. From competitions to campus programs like Innovative Academy, they taught me to stay consistent under pressure.",
+        education: " graduated in Philosophy from UGM, where I learned to break problems down to first principles. I built the technical side myself, course by course, based on what I needed: Google Data Analytics, Data Mining from the University of Michigan, Financial Engineering and Risk Management from Columbia University, and Machine Learning from Stanford and DeepLearning.AI via Coursera. I learn to close real gaps, not to collect certificates."
     };
 
     let sliderContainer: HTMLElement | null = $state(null);
@@ -140,36 +140,42 @@
         </button>
 
         <button 
-            onclick={() => changeTab('honors')}
-            class="text-lg md:text-xl font-serif tracking-wide transition-all duration-300 relative {activeTab === 'honors' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}"
+            onclick={() => changeTab('milestones')}
+            class="text-lg md:text-xl font-serif tracking-wide transition-all duration-300 relative {activeTab === 'milestones' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}"
         >
             Milestones
-            {#if activeTab === 'honors'}
+            {#if activeTab === 'milestones'}
                 <div class="absolute -bottom-[17px] left-0 w-full h-0.5 bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>
             {/if}
         </button>
 
         <button 
-            onclick={() => changeTab('courses')}
-            class="text-lg md:text-xl font-serif tracking-wide transition-all duration-300 relative {activeTab === 'courses' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}"
+            onclick={() => changeTab('education')}
+            class="text-lg md:text-xl font-serif tracking-wide transition-all duration-300 relative {activeTab === 'education' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}"
         >
             Education & Certifications
-            {#if activeTab === 'courses'}
+            {#if activeTab === 'education'}
                 <div class="absolute -bottom-[17px] left-0 w-full h-0.5 bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
             {/if}
         </button>
     </div>
     </div>
-
-  <div class="min-h-[80px] md:min-h-[60px] mb-6 w-full flex justify-center">
-        <p class="text-gray-400 font-sans text-base md:text-lg leading-relaxed max-w-4xl text-center">
-            {tabNarratives[activeTab]}
-            <a href={activeTab === 'honors' ? '/abouts' : `/${activeTab}`} class="inline-flex items-center gap-1 text-gray-300 hover:text-white transition-colors ml-2 font-mono text-sm md:text-base border-b border-gray-600 hover:border-white pb-0.5 group whitespace-nowrap">
-                more detail about {activeTab}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-        </p>
-    </div>
+  
+  <!-- Routing & Description -->
+<div class="min-h-[80px] md:min-h-[60px] mb-6 w-full flex justify-center">
+    <p class="text-gray-400 font-sans text-base md:text-lg leading-relaxed max-w-4xl text-center">
+        {tabNarratives[activeTab]}
+        
+        <a 
+            href={activeTab === 'honors' ? '/abouts/milestone' : (activeTab === 'courses' || activeTab === 'education' || activeTab === 'educations') ? '/abouts/education' : `/${activeTab}`} 
+            class="inline-flex items-center gap-1 text-gray-300 hover:text-white transition-colors ml-2 font-mono text-sm md:text-base border-b border-gray-600 hover:border-white pb-0.5 group whitespace-nowrap"
+        >
+            more detail about {(activeTab === 'courses' || activeTab === 'education' || activeTab === 'educations') ? 'education & certs' : activeTab === 'honors' ? 'milestones' : activeTab}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        
+    </p>
+</div>
     
     <div class="relative w-full group mt-2">
         
@@ -226,7 +232,7 @@
             {/if}
 
             
-            {#if activeTab === 'honors'}
+            {#if activeTab === 'milestones'}
     {#each data.recentMilestones || [] as item}
         <a in:fade={{duration: 300}} href="/abouts/milestone" class="snap-center shrink-0 w-[300px] md:w-[380px] group relative rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 hover:border-amber-500/50 transition-all duration-500 flex flex-col h-[400px] md:h-[440px]">
             <div class="absolute top-4 left-4 z-10 bg-gray-900/80 backdrop-blur-md border border-gray-700/50 text-amber-400 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-2">
@@ -250,7 +256,7 @@
     {/each}
 {/if}
 
-            {#if activeTab === 'courses'}
+            {#if activeTab === 'education'}
                 
                 {#each data.recentFormalEdu || [] as edu}
                     <a in:fade={{duration: 300}} href="/abouts/education" class="snap-center shrink-0 w-[300px] md:w-[380px] group relative rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 hover:border-purple-500/50 transition-all duration-500 flex flex-col h-[400px] md:h-[440px]">

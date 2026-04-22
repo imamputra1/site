@@ -58,6 +58,7 @@
     });
 </script>
 
+<!-- Container Content -->
 <svelte:head>
     {#if !dev}
         <script defer src="https://cloud.umami.is/script.js" data-website-id={PUBLIC_UMAMI_TRACKING_ID}></script>
@@ -86,9 +87,8 @@
     <Navbar />
 </main>
 
-
+<!-- Grid effect -->
 <style>
-    /* CSS Grid Biru 3b1b */
     .grid-plane {
         background-image: 
             linear-gradient(to right, rgba(14, 165, 233, 0.4) 1px, transparent 1px),
@@ -104,21 +104,18 @@
         100% { background-position: 0 60px; }
     }
 
-    /* SURGERY: Menghilangkan Scrollbar secara visual tapi tetap bisa discroll */
     .no-scrollbar::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
+        display: none;
     }
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
-    /* Kembalikan CSS Shadow bawaan Anda jika sebelumnya terhapus */
     .container-shadow {
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
-    /* CSS Grid Biru 3b1b */
     .grid-plane {
         background-image: 
             linear-gradient(to right, rgba(14, 165, 233, 0.4) 1px, transparent 1px),
@@ -134,32 +131,24 @@
         100% { background-position: 0 60px; }
     }
 
-    /* SURGERY: Menghilangkan Scrollbar secara visual tapi tetap bisa discroll */
     .no-scrollbar::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
+        display: none;
     }
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
-    /* Kembalikan CSS Shadow bawaan Anda jika sebelumnya terhapus */
     .container-shadow {
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
-    /* =========================================
-       CSS BARU UNTUK FOOTER (MAGIC NETWORK)
-       ========================================= */
-       
-    /* Sihir CSS untuk membuat pola jaringan (network nodes) */
     .magic-network-pattern {
         background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L80 23.09V69.28L40 92.38L0 69.28V23.09L40 0Z' fill='none' stroke='%23334155' stroke-width='0.5'/%3E%3Ccircle cx='40' cy='0' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='80' cy='23.09' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='80' cy='69.28' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='40' cy='92.38' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='0' cy='69.28' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='0' cy='23.09' r='1.5' fill='%2338bdf8' opacity='0.8'/%3E%3C/svg%3E");
         background-size: 80px 80px;
         animation: pan-network 40s linear infinite;
     }
 
-    /* Keyframes untuk pergerakan mulus pola footer */
     @keyframes pan-network {
         0% { background-position: 0 0; }
         100% { background-position: 160px 160px; }

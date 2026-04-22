@@ -3,7 +3,7 @@ import { title } from 'node:process';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-
+// 1. Fetching Articles
     const articleFiles = import.meta.glob('/src/contents/articles/*.md', { eager: true });
     let articles = [];
     
@@ -25,6 +25,7 @@ export const load: PageServerLoad = async () => {
     articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     const recentArticles = articles.slice(0,5);
 
+// 2. Fetching Projects
     const projectFiles = import.meta.glob('/src/contents/projects/*.md', { eager: true });
     let projects = [];
     
@@ -44,6 +45,7 @@ export const load: PageServerLoad = async () => {
     projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     const recentProjects = projects.slice(0, 5);
 
+// 3. Fetching Milestones
     const milestoneData = import.meta.glob('/src/contents/abouts/milestone.md', { eager: true });
     let recentMilestones: any[] = [];
 
@@ -55,6 +57,7 @@ export const load: PageServerLoad = async () => {
     }
     recentMilestones = recentMilestones.slice(0, 5);
 
+// 4. Fetching Educations
     const educationData = import.meta.glob('/src/contents/abouts/education.md', { eager: true });
     
     let recentFormalEdu: any[] = [];
