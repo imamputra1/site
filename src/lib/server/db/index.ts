@@ -8,7 +8,7 @@ const DATABASE_URL = env.DATABASE_URL || 'postgres://user:pass@localhost:5432/du
 
 // Ubah fatal error (throw) menjadi peringatan kuning (warn)
 if (!env.DATABASE_URL) {
-    console.warn('⚠️ Peringatan: DATABASE_URL belum diatur di environment.');
+	console.warn('⚠️ Peringatan: DATABASE_URL belum diatur di environment.');
 }
 
 // Inisialisasi klien (mesin build Vercel akan membaca URL dummy dan tidak akan crash)
