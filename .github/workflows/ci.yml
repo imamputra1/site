@@ -45,3 +45,4 @@ jobs:
           GITHUB_CLIENT_ID: pending
           GITHUB_CLIENT_SECRET: pending
           BASE_URL: pending
+          DATABASE_URL: pending
