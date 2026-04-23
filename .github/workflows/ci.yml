@@ -36,3 +36,12 @@ jobs:
 
       - name: Test Build (Simulate SSR Deployment)
         run: pnpm run build
+        - name: Run Type Checking (SSR & DI Validations)
+        run: pnpm run check
+
+      - name: Test Build (Simulate SSR Deployment)
+        run: pnpm run build
+        env:
+          GITHUB_CLIENT_ID: pending
+          GITHUB_CLIENT_SECRET: pending
+          BASE_URL: pending
