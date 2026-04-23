@@ -4,31 +4,30 @@ export const navbarMenu = [
 		href: '/',
 		key: 'h'
 	},
-  //{
-	  //title: 'videos',
-	  //href: '/videos',
-	  //key: 'v'
+	//{
+	//title: 'videos',
+	//href: '/videos',
+	//key: 'v'
 	//},
-  //{
-    //title: 'articles',
-		//href: '/articles',
-		//key: 'r'
+	//{
+	//title: 'articles',
+	//href: '/articles',
+	//key: 'r'
 	//},
 
 	//{
-		//title: 'projects',
-		//href: '/projects',
-		//key: 'p'
+	//title: 'projects',
+	//href: '/projects',
+	//key: 'p'
 	//},
-  {
+	{
 		title: 'abouts',
 		href: '/abouts/work',
 		key: 'a'
-	},
-  //{
-		//title: 'guest-book',
-		//href: '/guest-book',
-		//key: 'g'
+	}
+	//{
+	//title: 'guest-book',
+	//href: '/guest-book',
+	//key: 'g'
 	//},
-
 ] as const;

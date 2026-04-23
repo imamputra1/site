@@ -6,7 +6,7 @@ formal_education:
     date: Aug 2021 - Jul 2025
     gpa: 3.70
     description: ''
-    skills: 
+    skills:
       - Research
       - Logic
       - Technology
@@ -17,7 +17,7 @@ formal_education:
         date: Feb 2024 - Aug 2025 · 1 yr 7 mos
         location: Daerah Istimewa Yogyakarta, Indonesia · On-site
         description: 'Participated in an intensive university incubator program, which taught me how to support ongoing project work streams from the ground up in a highly dynamic, fast-paced environment. Helped the core team stay organized and on track by diligently documenting mentor feedback, tracking daily operational tasks, and ensuring all cross-functional members were aligned with the current goals. Navigated constant project pivots, which deeply ingrained in me the importance of embracing failures as lessons, adapting quickly, and continuously pushing the project forward without losing attention to administrative details.'
-        skills: 
+        skills:
           - Project Coordination
           - Adaptation
           - Editing
@@ -30,13 +30,13 @@ formal_education:
         date: Sep 2021 - Sep 2022 · 5 mos
         location: Daerah Istimewa Yogyakarta, Indonesia · Hybrid
         description: 'Conducted user research and carefully compiled raw feedback into structured insights. Honed my ability to analyze scattered information and turn it into clear reports—a foundational skill highly applicable for market or competitor analysis.'
-        skills: 
+        skills:
           - Market Research
           - Visualisasi Data
           - Microsoft PowerPoint
           - Time Management
         logo: /abouts/works/bt.png
-          
+
       - role: Independent entrepreneur program participants
         name: Kampus Merdeka · Internship
         date: Aug 2023 - Dec 2023 · 5 mos
@@ -49,7 +49,7 @@ formal_education:
           - Stakeholder Management
           - Google Workspace
         logo: /abouts/educations/wmk.png
-           
+
       - role: Security Coordinator
         name: Banwaslu (Badan Pengawas Pemilu) UGM
         date: Jan 2023 - Feb 2023 · 2 mos
@@ -61,14 +61,14 @@ formal_education:
           - Editing
           - Stakeholder Management
           - Google Workspace
-        logo: /abouts/educations/banwas.png        
+        logo: /abouts/educations/banwas.png
 
       - role: Staff Human Resources Development
         name: Lingkar Studi Filsafat (LSF) Cogito
         date: Sep 2021 - Sep 2022 · 1 yr 1 mos
         location: Daerah Istimewa Yogyakarta, Indonesia · Hybrid
         description: ''
-        skills: 
+        skills:
           - Attention to Detail
           - Data Entry
           - Administrative Work
@@ -81,20 +81,20 @@ certifications:
     date: Published Dec 2025
     credential_id: KJOODI51UW8Y
     credential_url: 'https://coursera.org/verify/KJOODI51UW8Y'
-    skills: 
+    skills:
       - Risk Management
       - Data Analysis
       - Financial Modeling
       - Probability
       - Optimization
     logo: /abouts/educations/columbia.png
-    
+
   - title: Data Mining in Python
     issuer: University of Michigan - School of Information
     date: Published Jan 2026
     credential_id: 7SX6OI6LDYZP
     credential_url: 'https://coursera.org/verify/7SX6OI6LDYZP'
-    skills: 
+    skills:
       - Python (Polars & NumPy)
       - Data Analysis
       - Machine Learning
@@ -145,7 +145,7 @@ certifications:
       - Python
       - Cloud Architecture
     logo: /abouts/educations/alibaba.png
-  
+
   - title: Google Data Analytics Professional Certificate
     issuer: Coursera
     date: Dec 2024 - Expires Dec 2026

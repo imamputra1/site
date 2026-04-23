@@ -1,103 +1,103 @@
 <script lang="ts">
-    import { page } from '$app/state';
-    
-    import { navbarMenu } from './navbar-menu';
-    import NavbarListener from './navbar-listener.svelte';
+	import { page } from '$app/state';
 
-    // PENGAMAN 1: Menggunakan opsional chaining agar aman saat Server-Side Rendering
-    let currentPath = $derived(page?.url?.pathname || '/');
+	import { navbarMenu } from './navbar-menu';
+	import NavbarListener from './navbar-listener.svelte';
 
-    const isActive = (href: string, currentPath: string) => {
-        if (!currentPath) return false;
-        if (currentPath === href) return true;
-        if (href !== '/' && currentPath.startsWith(href + '/')) return true;
-        return false;
-    };
+	// PENGAMAN 1: Menggunakan opsional chaining agar aman saat Server-Side Rendering
+	let currentPath = $derived(page?.url?.pathname || '/');
 
-    const getHighlightedParts = (title: string, key: string) => {
-        // PENGAMAN 2: Mencegah error jika title kosong
-        if (!title || !key || key.length !== 1) return { before: title || '', highlighted: null, after: '' };
+	const isActive = (href: string, currentPath: string) => {
+		if (!currentPath) return false;
+		if (currentPath === href) return true;
+		if (href !== '/' && currentPath.startsWith(href + '/')) return true;
+		return false;
+	};
 
-        const index = title.toLowerCase().indexOf(key.toLowerCase());
+	const getHighlightedParts = (title: string, key: string) => {
+		// PENGAMAN 2: Mencegah error jika title kosong
+		if (!title || !key || key.length !== 1) return { before: title || '', highlighted: null, after: '' };
 
-        // Key not found in title
-        if (index === -1) return { before: title, highlighted: null, after: '' };
+		const index = title.toLowerCase().indexOf(key.toLowerCase());
 
-        // Return the parts, preserving original case for the highlighted character
-        return {
-            before: title.substring(0, index),
-            highlighted: title.substring(index, index + 1), // Get the char from original title
-            after: title.substring(index + 1)
-        };
-    };
+		// Key not found in title
+		if (index === -1) return { before: title, highlighted: null, after: '' };
 
-    // SURGERY FIX: Kita buat fungsi trigger kosong untuk menggantikan web-haptics.
-    // Dengan begini, onclick={() => trigger()} di HTML Anda TIDAK PERLU diubah, dan JS tidak akan crash!
-    const trigger = () => {};
+		// Return the parts, preserving original case for the highlighted character
+		return {
+			before: title.substring(0, index),
+			highlighted: title.substring(index, index + 1), // Get the char from original title
+			after: title.substring(index + 1)
+		};
+	};
+
+	// SURGERY FIX: Kita buat fungsi trigger kosong untuk menggantikan web-haptics.
+	// Dengan begini, onclick={() => trigger()} di HTML Anda TIDAK PERLU diubah, dan JS tidak akan crash!
+	const trigger = () => {};
 </script>
 
 <NavbarListener />
 
 <nav class="overflow-x-auto text-sm select-none md:text-base lg:px-4 lg:py-3">
-    <div class="hidden items-center justify-between gap-2 px-2 lg:flex lg:px-0">
-        <div class="flex items-center gap-2">
-            <div class="bg-ash-200 h-4 w-1.5"></div>
-            <a class="flex items-center" href="https://github.com/imamputra1" target="_blank" rel="norreferrer" data-umami-event="github-repo-link">
-                <svg
-                    class="mr-1 h-3 w-3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <line x1="6" x2="6" y1="3" y2="15"></line>
-                    <circle cx="18" cy="6" r="3"></circle>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <path d="M18 9a9 9 0 0 1-9 9"></path>
-                </svg>
-                GITHUB
-            </a>
-        </div>
-        <p> CONTACT VIA EMAIL</p>
-    </div>
-    <div class="flex items-center justify-between gap-20 overflow-x-auto px-2 py-3 leading-none lg:px-0 lg:py-0">
-        <ul class="flex items-center">
-            {#each navbarMenu as { title, href, key }, i (i)}
-                {@const parts = getHighlightedParts(title, key)}
-                {@const isOnCurrentPath = isActive(href, currentPath)}
+	<div class="hidden items-center justify-between gap-2 px-2 lg:flex lg:px-0">
+		<div class="flex items-center gap-2">
+			<div class="bg-ash-200 h-4 w-1.5"></div>
+			<a class="flex items-center" href="https://github.com/imamputra1" target="_blank" rel="norreferrer" data-umami-event="github-repo-link">
+				<svg
+					class="mr-1 h-3 w-3"
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<line x1="6" x2="6" y1="3" y2="15"></line>
+					<circle cx="18" cy="6" r="3"></circle>
+					<circle cx="6" cy="18" r="3"></circle>
+					<path d="M18 9a9 9 0 0 1-9 9"></path>
+				</svg>
+				GITHUB
+			</a>
+		</div>
+		<p>CONTACT VIA EMAIL</p>
+	</div>
+	<div class="flex items-center justify-between gap-20 overflow-x-auto px-2 py-3 leading-none lg:px-0 lg:py-0">
+		<ul class="flex items-center">
+			{#each navbarMenu as { title, href, key }, i (i)}
+				{@const parts = getHighlightedParts(title, key)}
+				{@const isOnCurrentPath = isActive(href, currentPath)}
 
-                <li class="shrink-0">
-                    <a
-                        {href}
-                        onclick={() => trigger()}
-                        data-sveltekit-preload-code="eager"
-                        data-sveltekit-preload-data
-                        data-active={isOnCurrentPath}
-                        class={`text-ash-300 data-[active=true]:bg-ash-300 data-[active=true]:text-ash-800 flex items-center px-2 py-0.5 leading-none transition-all ${isOnCurrentPath ? '' : ''}`}
-                        aria-label={`${title} (Shortcut: ${key})`}
-                    >
-                        {parts.before}{#if parts.highlighted}<span class={`${isOnCurrentPath ? 'text-ash-800' : 'text-ash-100'} transition-all`}>{parts.highlighted}</span>
-                        {/if}{parts.after}
-                    </a>
-                </li>
-            {/each}
-        </ul>
-        <div class="not-sr-only hidden items-center gap-2 lg:flex">
-            <a
-                class="bg-ash-300 shrink-0 px-2 py-0.5 leading-none text-black hover:bg-white transition-colors"
-                href="mailto:a.i.syahputra@gmail.com?subject=Connecting%20from%20your%20Portfolio&body=Halo%20Imam,%0A%0ASaya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut%20mengenai..."
-                target="_blank"
-                rel="noreferrer"
-                data-umami-event="email-link"
-                data-umami-event-platform="email"
-            >
-                a.i.syahputra@gmail.com
-            </a>
-        </div>
-    </div>
+				<li class="shrink-0">
+					<a
+						{href}
+						onclick={() => trigger()}
+						data-sveltekit-preload-code="eager"
+						data-sveltekit-preload-data
+						data-active={isOnCurrentPath}
+						class={`text-ash-300 data-[active=true]:bg-ash-300 data-[active=true]:text-ash-800 flex items-center px-2 py-0.5 leading-none transition-all ${isOnCurrentPath ? '' : ''}`}
+						aria-label={`${title} (Shortcut: ${key})`}
+					>
+						{parts.before}{#if parts.highlighted}<span class={`${isOnCurrentPath ? 'text-ash-800' : 'text-ash-100'} transition-all`}>{parts.highlighted}</span>
+						{/if}{parts.after}
+					</a>
+				</li>
+			{/each}
+		</ul>
+		<div class="not-sr-only hidden items-center gap-2 lg:flex">
+			<a
+				class="bg-ash-300 shrink-0 px-2 py-0.5 leading-none text-black transition-colors hover:bg-white"
+				href="mailto:a.i.syahputra@gmail.com?subject=Connecting%20from%20your%20Portfolio&body=Halo%20Imam,%0A%0ASaya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut%20mengenai..."
+				target="_blank"
+				rel="noreferrer"
+				data-umami-event="email-link"
+				data-umami-event-platform="email"
+			>
+				a.i.syahputra@gmail.com
+			</a>
+		</div>
+	</div>
 </nav>

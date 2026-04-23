@@ -1,18 +1,18 @@
 [
-  {
-    "slug": "startup-angkut-ternak",
-    "youtubeId": "NL78mGiK2jA",
-    "title": "Kisah Startup Angkut Ternak Dari Alumni Wirausaha Merdeka",
-    "date": "2024-10-25",
-    "description": "An overview of how logistics in livestock can be transformed through startup innovation and algorithmic thinking.",
-    "thumbnailUrl": "https://img.youtube.com/vi/NL78mGiK2jA/maxresdefault.jpg"
-  },
-  {
-    "slug": "algorithmic-trading-basics",
-    "youtubeId": "dQw4w9WgXcQ",
-    "title": "Algorithmic Thinking in Financial Markets",
-    "date": "2024-11-12",
-    "description": "Understanding the core concepts of automated trading, order books, and moving average crossovers.",
-    "thumbnailUrl": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
-  }
+	{
+		"slug": "startup-angkut-ternak",
+		"youtubeId": "NL78mGiK2jA",
+		"title": "Kisah Startup Angkut Ternak Dari Alumni Wirausaha Merdeka",
+		"date": "2024-10-25",
+		"description": "An overview of how logistics in livestock can be transformed through startup innovation and algorithmic thinking.",
+		"thumbnailUrl": "https://img.youtube.com/vi/NL78mGiK2jA/maxresdefault.jpg"
+	},
+	{
+		"slug": "algorithmic-trading-basics",
+		"youtubeId": "dQw4w9WgXcQ",
+		"title": "Algorithmic Thinking in Financial Markets",
+		"date": "2024-11-12",
+		"description": "Understanding the core concepts of automated trading, order books, and moving average crossovers.",
+		"thumbnailUrl": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+	}
 ]

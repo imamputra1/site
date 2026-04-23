@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import '@fontsource/commit-mono';
-@plugin "@tailwindcss/typography";
+@plugin '@tailwindcss/typography';
 
 @theme {
 	--font-mono: 'Commit Mono';

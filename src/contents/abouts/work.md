@@ -39,6 +39,6 @@ experiences:
       - Retail Operations
       - Inventory Management
       - Sales Reporting
-      - Attention to Detail    
+      - Attention to Detail
     logo: /abouts/works/sm.png
 ---
