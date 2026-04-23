@@ -1,6 +1,12 @@
 import { GitHub } from 'arctic';
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, BASE_URL } from '$env/static/private';
+// Gunakan dynamic environment alih-alih static
+import { env } from '$env/dynamic/private';
 
-export const github = new GitHub(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, BASE_URL);
+// Berikan fallback (nilai cadangan) agar Arctic/TypeScript tidak protes
+export const github = new GitHub(
+    env.GITHUB_CLIENT_ID || 'pending', 
+    env.GITHUB_CLIENT_SECRET || 'pending', 
+    env.BASE_URL || 'http://localhost:5173'
+);
 
 // TODO: Update redirect URI
