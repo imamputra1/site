@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async () => {
 	// 1. Fetching Articles
 	const articleFiles = import.meta.glob('/src/contents/articles/*.md', { eager: true });
-	let articles = [];
+	const articles = [];
 
 	for (const path in articleFiles) {
 		const file = articleFiles[path] as any;
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async () => {
 
 	// 2. Fetching Projects
 	const projectFiles = import.meta.glob('/src/contents/projects/*.md', { eager: true });
-	let projects = [];
+	const projects = [];
 
 	for (const path in projectFiles) {
 		const file = projectFiles[path] as any;
