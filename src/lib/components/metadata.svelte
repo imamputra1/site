@@ -8,7 +8,7 @@
 		image?: string;
 	}
 
-	let { title, description, image = '/opengraph-image.png' }: $$Props = $props();
+	let { title, description, image = '/opg.png' }: $$Props = $props();
 
 	let isMobile = $derived(new MediaQuery('(max-width: 1024px)').current);
 </script>
