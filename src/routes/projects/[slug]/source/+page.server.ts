@@ -1,5 +1,5 @@
 import { error, redirect } from '@sveltejs/kit';
-
+export const prerender = false;
 export const load = async ({ params }) => {
 	// Gunakan path absolute
 	const allProjects = import.meta.glob('/src/contents/projects/*.md', { eager: true });
