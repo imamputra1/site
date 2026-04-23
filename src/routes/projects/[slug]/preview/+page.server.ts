@@ -1,5 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
+export const prerender = false;
 
+// ... sisa kode Anda di bawah sini ...
 export const load = async ({ params }) => {
 	// 1. Menggunakan path absolute /src/... agar Vite tidak kebingungan
 	const allProjects = import.meta.glob('/src/contents/projects/*.md', { eager: true });
