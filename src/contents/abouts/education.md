@@ -77,6 +77,7 @@ formal_education:
 
 certifications:
   - title: Introduction to Financial Engineering and Risk Management
+    platform: Coursera
     issuer: Columbia University Industrial Engineering and Operations Research
     date: Published Dec 2025
     credential_id: KJOODI51UW8Y
@@ -87,9 +88,13 @@ certifications:
       - Financial Modeling
       - Probability
       - Optimization
+      - Derivatives
+      - Quantitative Finance
     logo: /abouts/educations/columbia.png
+    platform_logo: /abouts/educations/coursera.png
 
   - title: Data Mining in Python
+    platform: Coursera
     issuer: University of Michigan - School of Information
     date: Published Jan 2026
     credential_id: 7SX6OI6LDYZP
@@ -101,6 +106,7 @@ certifications:
       - Data Visualization
       - Pandas
     logo: /abouts/educations/michigan.png
+    platform_logo: /abouts/educations/coursera.png
 
   - title: Machine Learning
     issuer: DeepLearning.AI
@@ -112,6 +118,7 @@ certifications:
       - Machine Learning
       - Model Training
     logo: /abouts/educations/stf.png
+    platform_logo: /abouts/educations/coursera.png
 
   - title: Advanced Learning Algorithms
     issuer: DeepLearning.AI
@@ -123,6 +130,7 @@ certifications:
       - Problem Solving
       - Neural Networks
     logo: /abouts/educations/stf.png
+    platform_logo: /abouts/educations/coursera.png
 
   - title: 'Supervised Machine Learning: Regression and Classification'
     issuer: DeepLearning.AI
@@ -134,6 +142,7 @@ certifications:
       - Trend Analysis
       - Regression Models
     logo: /abouts/educations/stf.png
+    platform_logo: /abouts/educations/coursera.png
 
   - title: Alibaba Cloud Certified Developers
     issuer: Alibaba Cloud
@@ -156,4 +165,5 @@ certifications:
       - Data Visualization
       - Analytics
     logo: /abouts/educations/g.png
+    platform_logo: /abouts/educations/coursera.png
 ---

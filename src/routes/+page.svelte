@@ -30,7 +30,7 @@
 
 	import { fade } from 'svelte/transition';
 
-	const galleryImages = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.png`);
+	const galleryImages = Array.from({ length: 12 }, (_, i) => `/images/${i + 1}.png`);
 
 	let galleryContainer: HTMLElement | null = $state(null);
 	let autoScrollInterval: ReturnType<typeof setInterval>;
@@ -90,14 +90,14 @@
 
 			<div class="mt-4 flex w-full shrink-0 justify-center md:mt-20 md:w-1/4 md:justify-center">
 				<div class="aspect-3/4 w-full max-w-50 overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-xl">
-					<img src="/profile.png" alt="Imam Putra" class="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0" />
+					<img src="/formal_photo.png" alt="Imam Putra" class="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0" />
 				</div>
 			</div>
 		</div>
 
 		<div class="flex w-full flex-col items-center justify-end gap-4 pt-1 md:flex-row md:pt-1">
 			<a
-				href="/cv-imam-putra.pdf"
+				href="/Agus_Imam_Syahputra.pdf"
 				download
 				class="inline-flex w-fit items-center gap-2 rounded-md border border-gray-700 bg-gray-900/50 px-5 py-2.5 font-mono text-sm text-gray-300 transition-all duration-300 hover:border-sky-500 hover:bg-gray-800/50 hover:text-sky-400"
 			>

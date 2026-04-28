@@ -1,0 +1,123 @@
+Tentu. Ini adalah topik yang sangat penting dalam AI modern. **Agentic AI** adalah pergeseran dari AI "pasif" (yang hanya merespons) menjadi AI "aktif" (yang bisa bertindak untuk mencapai tujuan).
+
+Berikut adalah *breakdown* detail dari komponen dan kategorinya.
+
+---
+
+### Apa itu Agentic AI?
+
+Sederhananya, **Agentic AI** adalah sebuah sistem yang dapat **secara otonom** merasakan (Perceive) lingkungannya, membuat rencana (Plan), dan mengambil tindakan (Act) untuk mencapai **tujuan yang kompleks**.
+
+* **AI Pasif (Contoh: ChatGPT biasa):** Anda memberi *prompt*, ia memberi *jawaban*. Selesai. Ia adalah alat.
+* **AI Agentic (Contoh: AutoGPT):** Anda memberi *tujuan* ("Buatkan saya riset pasar tentang pesaing produk X"), ia akan **membuat rencana** (1. Cari Google, 2. Analisis 5 web teratas, 3. Tulis ringkasan, 4. Simpan ke file), lalu **menjalankan rencana itu** (memanggil API Google, membaca web, menulis file) tanpa henti sampai tujuannya tercapai. Ia adalah *pekerja* digital.
+
+Komponen utamanya membentuk sebuah siklus: **Perception → Planning → Action → Observation → (Repeat)**.
+
+---
+
+### 1. Model (The "Brain")
+
+Ini adalah inti dari si agen, berfungsi sebagai mesin penalaran (*reasoning engine*).
+
+* **Apa itu:** Model ini hampir selalu merupakan **Large Language Model (LLM)** *foundation model* yang sangat kuat.
+* **Contoh:**
+    * **GPT-4o / GPT-4 Turbo:** Dikenal karena kemampuan penalaran dan *tool use* (function calling) yang canggih.
+    * **Google Gemini (Pro/Ultra):** Model multimodal yang dirancang untuk menerima berbagai jenis *prompt* (teks, gambar) dan bernalar.
+    * **Anthropic Claude 3 (Opus):** Dikenal karena *context window* yang sangat besar, memungkinkannya "mengingat" lebih banyak hal.
+    * **Llama 3 / Mistral:** Model *open-source* yang populer untuk membangun agen kustom.
+* **Mengapa LLM?** Karena LLM tidak hanya "tahu" fakta, tapi juga memiliki **kemampuan penalaran umum (general reasoning)**. Mereka bisa "memahami" tujuan, memecahnya menjadi langkah-langkah logis, dan beradaptasi jika terjadi kesalahan.
+
+---
+
+### 2. Arsitektur (The "Body Plan" / Sistem Saraf)
+
+Ini adalah *framework* atau "tubuh" yang menghubungkan "otak" (LLM) dengan dunia luar. Ini adalah komponen terpenting yang membedakan AI agentic.
+
+* **Memory (Memori):** Agen butuh ingatan untuk melacak apa yang telah dilakukan dan apa yang telah dipelajari.
+    * **Memori Jangka Pendek (Working Memory):** Ini adalah *context window* dari LLM. Ini adalah "scratchpad" tempat agen "berpikir" langkah demi langkah (misalnya: "Saya baru saja mencari Google, hasilnya adalah ini, sekarang saya harus...").
+    * **Memori Jangka Panjang (Long-term Memory):** Karena *context window* terbatas, agen butuh tempat penyimpanan permanen. Ini hampir selalu diimplementasikan sebagai **Vector Database** (cth: Pinecone, Chroma). Agen bisa "menyimpan" fakta atau ringkasan ("Produk X rilis tahun 2023") dan "mengambil" memori yang relevan nanti.
+
+* **Planning Module (Modul Perencanaan):**
+    * Ini adalah tempat "otak" (LLM) membuat rencana. Agen diberi tujuan, dan LLM menghasilkan daftar langkah.
+    * Contoh: `Tujuan: "Cari tahu cuaca besok." Rencana: [1. Panggil `get_user_location()`, 2. Panggil `search_weather(location, date="tomorrow")`, 3. Berikan jawaban ke user]`.
+
+* **Action Module & Tools (Efektor):**
+    * Ini adalah "tangan" dan "kaki" agen. Ini adalah *satu-satunya* cara agen dapat berinteraksi dengan dunia di luar otaknya.
+    * Tools adalah **fungsi (functions)** atau **API** yang bisa dipanggil oleh LLM.
+    * **Contoh Tools:**
+        * `Google Search(query)`: Untuk mencari di internet.
+        * `read_file(path)`: Untuk membaca file lokal.
+        * `write_file(path, content)`: Untuk menulis file.
+        * `run_python_code(code)`: Untuk menjalankan skrip (sangat kuat).
+        * `call_api(endpoint, payload)`: Untuk berinteraksi dengan layanan lain.
+
+---
+
+### 3. Pendekatan (The "Strategy" / Cara Berpikir)
+
+Ini adalah strategi atau *prompting technique* spesifik yang digunakan untuk memandu proses "berpikir" si agen.
+
+* **ReAct (Reason + Act):**
+    * Ini adalah pendekatan paling fundamental dan populer.
+    * Agen dipaksa untuk *looping* melalui tiga langkah:
+        1.  **Reason (Berpikir):** LLM menghasilkan pemikirannya secara internal. ("Saya perlu tahu lokasi pengguna.")
+        2.  **Act (Bertindak):** Berdasarkan pemikirannya, LLM memutuskan untuk memanggil *tool*. (Memanggil `get_user_location()`).
+        3.  **Observe (Mengamati):** Hasil dari *tool* (misalnya: "Lokasi: Jakarta") dimasukkan kembali ke LLM sebagai observasi.
+    * Loop ini berulang: `Reason` ("OK, lokasinya Jakarta. Sekarang saya perlu cari cuaca.") -> `Act` (`search_weather("Jakarta")`) -> `Observe` ("Cuaca: Hujan") -> `Reason` ("Selesai. Saya akan berikan jawaban.") -> `Act` (`respond_to_user("Cuaca besok hujan.")`).
+
+* **Tree-of-Thought (ToT):**
+    * Untuk masalah yang lebih kompleks. Alih-alih satu rencana, agen akan mengeksplorasi **beberapa cabang rencana** secara paralel.
+    * ("Rencana A adalah cari Google. Rencana B adalah cek database internal.")
+    * Agen kemudian mengevaluasi setiap cabang ("Rencana A sepertinya lebih menjanjikan") dan melanjutkannya. Ini seperti *brainstorming* terstruktur.
+
+* **Multi-Agent Systems (MAS):**
+    * Menggunakan **beberapa agen** yang berkolaborasi, masing-masing dengan peran spesifik.
+    * Contoh: **Agen Peneliti** (mencari info), **Agen Penulis** (menyusun draf), dan **Agen Pengkritik** (merevisi draf). Mereka "berdebat" dan bekerja sama untuk menghasilkan output berkualitas tinggi (cth: framework seperti AutoGen dari Microsoft).
+
+---
+
+### 4. Paradigma Belajar (Bagaimana Agen Beradaptasi)
+
+* **In-Context Learning (Zero-Shot / Few-Shot):**
+    * Ini adalah cara belajar **paling umum** untuk agen LLM.
+    * Agen tidak *dilatih ulang* (weights-nya tidak berubah). Ia "belajar" dari kesalahan secara *real-time* di dalam *context window*-nya.
+    * Contoh: `Act` (`read_file("laporan.txt")`) -> `Observe` ("Error: File not found.") -> `Reason` ("Ah, file tidak ada. Saya harus coba `list_files()` dulu untuk melihat file apa yang ada."). Kesalahan ini menjadi "pelajaran" instan.
+
+* **Reinforcement Learning (RL):**
+    * Ini adalah paradigma agen *klasik* (misalnya, AI yang bermain game).
+    * Agen menerima **reward** (hadiah) atau **punishment** (hukuman) atas tindakannya, dan modelnya diperbarui untuk memaksimalkan *reward*.
+    * Dalam konteks LLM, ini lebih banyak digunakan dalam *pre-training* (seperti **RLHF** - Reinforcement Learning from Human Feedback) untuk membuat model dasarnya lebih baik dalam mengikuti instruksi, bukan pada saat agen sedang berjalan.
+
+* **Supervised Fine-Tuning (Penyesuaian):**
+    * Anda bisa merekam jejak (log) dari eksekusi agen yang sukses (pasangan `Tujuan` -> `Rencana Sukses`).
+    * Anda kemudian menggunakan log ini sebagai data latih untuk *fine-tuning* model LLM Anda, membuatnya menjadi perencana yang lebih baik di masa depan.
+
+---
+
+### 5. Teori Computer Science (Aturan Main & Struktur)
+
+* **Automata Theory (Finite State Machines):**
+    * Agen pada dasarnya adalah Mesin Status Terbatas. Ia memiliki *state* (status) saat ini (misalnya, `STATE_PLANNING`, `STATE_EXECUTING_TOOL`, `STATE_FINISHED`) dan *transisi* antar status berdasarkan input (observasi).
+
+* **Algorithms & Data Structures:**
+    * **Pencarian (Search):** Algoritma *search* (seperti A* atau Breadth-First Search) adalah dasar teoretis dari *Tree-of-Thought*.
+    * **Data Structures (Parsing):** Output dari LLM (otak) adalah teks. Sistem arsitektur harus *mem-parsing* (parse) teks ini—seringkali dalam format **JSON** atau XML—untuk tahu *tool* mana yang harus dipanggil.
+    * **Vector Search:** Memori jangka panjang (Vector DB) bergantung pada algoritma pencarian tetangga terdekat (Nearest Neighbor) yang efisien (seperti **HNSW, k-d trees**) untuk menemukan memori yang relevan dengan cepat.
+
+* **API & Sistem Terdistribusi:**
+    * Agen adalah tentang **integrasi**. Ia harus bisa berkomunikasi dengan sistem lain melalui API (Application Programming Interfaces). Ini adalah inti dari *tool use*.
+
+---
+
+### 6. Matematika (Bahasa yang Mendasari)
+
+* **Aljabar Linier (Linear Algebra):**
+    * **Vektor & Embeddings:** **Semuanya** diubah menjadi vektor (angka). Kata, kalimat, dokumen, gambar. Ini adalah cara matematika merepresentasikan "makna".
+    * **Cosine Similarity:** Ini adalah matematika inti di balik **Vector Database**. Agen menemukan memori yang "relevan" dengan menghitung kesamaan vektor antara pertanyaan saat ini dan memori yang tersimpan.
+
+* **Probabilitas & Statistika:**
+    * **Model Probabilistik:** LLM (otak) adalah model probabilistik raksasa. Ia tidak "tahu" jawabannya; ia **memprediksi token (kata) berikutnya yang paling mungkin** berdasarkan konteks. `P(token | context)`.
+    * **Teori Keputusan (Decision Theory):** Agen secara implisit menghitung *expected utility* (nilai yang diharapkan) dari suatu tindakan untuk memutuskan langkah terbaik selanjutnya.
+
+* **Kalkulus:**
+    * **Gradient Descent & Backpropagation:** Ini adalah **bagaimana "otak" (LLM) dilatih** dari awal. Ini adalah proses optimisasi (menggunakan turunan/gradien) untuk menemukan *weights* (parameter) model yang meminimalkan kesalahan (*loss function*).

@@ -321,89 +321,107 @@
 			<h2 class="font-serif text-3xl tracking-widest text-white/90 uppercase">LICENSE & CERTIFICATIONS</h2>
 		</div>
 
-		<div class="flex w-full flex-col">
-			{#each data.meta.certifications || [] as cert, i}
-				<div class="flex flex-col gap-4 py-4 md:flex-row md:gap-6 {i !== 0 ? 'border-t border-gray-800/60' : 'pt-0'}">
-					<div class="mt-1 h-15 w-15 shrink-0 rounded-md border border-gray-700/50 bg-white/5 p-1 md:h-30 md:w-30">
-						<img src={cert.logo} alt={cert.issuer} class="h-full w-full object-contain" onerror={(e) => (e.currentTarget.style.display = 'none')} />
-					</div>
+    <div class="flex w-full flex-col">
+            {#each data.meta.certifications || [] as cert, i}
+                <div class="flex flex-col gap-4 py-4 md:flex-row md:gap-6 {i !== 0 ? 'border-t border-gray-800/60' : 'pt-0'}">
+                    
+                    <div class="mt-1 flex shrink-0 items-center gap-2 md:gap-3 w-[115px] md:w-[155px]">
+                        {#if cert.platform_logo}
+                            <div class="h-12 w-12 shrink-0 rounded-md border border-gray-700/50 bg-white/5 p-1 md:h-16 md:w-16">
+                                <img src={cert.platform_logo} alt={cert.platform} class="h-full w-full object-contain" onerror={(e) => (e.currentTarget.style.display = 'none')} />
+                            </div>
+                            <span class="text-xs font-bold text-gray-500 md:text-sm">✕</span>
+                        {/if}
+                        
+                        <div class="h-12 w-12 shrink-0 rounded-md border border-gray-700/50 bg-white/5 p-1 md:h-16 md:w-16">
+                            <img src={cert.logo} alt={cert.issuer} class="h-full w-full object-contain" onerror={(e) => (e.currentTarget.style.display = 'none')} />
+                        </div>
+                    </div>
 
-					<div class="flex flex-1 flex-col">
-						<h4 class="text-xl font-semibold text-gray-100">{cert.title}</h4>
-						<p class="mt-1 text-sm text-gray-200 md:text-base">{cert.issuer}</p>
-						<p class="mt-1 text-sm text-gray-500">{cert.date}</p>
+                    <div class="flex flex-1 flex-col">
+                        <h4 class="text-xl font-semibold text-gray-100">{cert.title}</h4>
+                        
+                        <p class="mt-1 text-sm text-gray-200 md:text-base">
+                            {#if cert.platform}
+                                {cert.platform} <span class="mx-1 text-xs font-bold text-gray-500">✕</span> 
+                            {/if}
+                            {cert.issuer}
+                        </p>
+                        
+                        <p class="mt-1 text-sm text-gray-500">{cert.date}</p>
 
-						{#if cert.credential_id}
-							<p class="mt-0.5 text-sm text-gray-500">Credentials ID {cert.credential_id}</p>
-						{/if}
+                        {#if cert.credential_id}
+                            <p class="mt-0.5 text-sm text-gray-500">Credentials ID {cert.credential_id}</p>
+                        {/if}
 
-						{#if cert.credential_url}
-							<a
-								href={cert.credential_url}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="group mt-5 flex w-fit items-center gap-2 rounded-full border border-gray-500 px-5 py-1.5 text-sm font-medium text-gray-300 transition-all hover:border-gray-300 hover:bg-gray-800 hover:text-white"
-							>
-								Show credentials
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="14"
-									height="14"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-									><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line
-										x1="10"
-										y1="14"
-										x2="21"
-										y2="3"
-									></line></svg
-								>
-							</a>
-						{/if}
+                        {#if cert.credential_url}
+                            <a
+                                href={cert.credential_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group mt-5 flex w-fit items-center gap-2 rounded-full border border-gray-500 px-5 py-1.5 text-sm font-medium text-gray-300 transition-all hover:border-gray-300 hover:bg-gray-800 hover:text-white"
+                            >
+                                Show credentials
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                    ><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line
+                                        x1="10"
+                                        y1="14"
+                                        x2="21"
+                                        y2="3"
+                                    ></line></svg
+                                >
+                            </a>
+                        {/if}
 
-						{#if cert.skills && cert.skills.length > 0}
-							<div class="mt-6 pt-1">
-								<div class="flex items-start gap-2">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="14"
-										height="14"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										class="mt-[3px] shrink-0 text-gray-500"
-										><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg
-									>
-									<div class="text-sm leading-relaxed font-bold text-gray-300">
-										{#if cert.skills.length <= 2 || expandedSkills[`cert-${i}`]}
-											{cert.skills.join(', ')}
-											{#if cert.skills.length > 2}
-												<button onclick={() => toggleSkills(`cert-${i}`)} class="ml-1 font-normal text-gray-500 transition-colors hover:text-white"
-													>&middot; hide</button
-												>
-											{/if}
-										{:else}
-											{cert.skills.slice(0, 2).join(', ')} dan
-											<button onclick={() => toggleSkills(`cert-${i}`)} class="font-extrabold text-gray-400 transition-colors hover:text-white hover:underline">
-												+{cert.skills.length - 2} Skills
-											</button>
-										{/if}
-									</div>
-								</div>
-							</div>
-						{/if}
-					</div>
-				</div>
-			{/each}
-		</div>
+                        {#if cert.skills && cert.skills.length > 0}
+                            <div class="mt-6 pt-1">
+                                <div class="flex items-start gap-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="mt-[3px] shrink-0 text-gray-500"
+                                        ><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg
+                                    >
+                                    <div class="text-sm leading-relaxed font-bold text-gray-300">
+                                        {#if cert.skills.length <= 2 || expandedSkills[`cert-${i}`]}
+                                            {cert.skills.join(', ')}
+                                            {#if cert.skills.length > 2}
+                                                <button onclick={() => toggleSkills(`cert-${i}`)} class="ml-1 font-normal text-gray-500 transition-colors hover:text-white"
+                                                    >&middot; hide</button
+                                                >
+                                            {/if}
+                                        {:else}
+                                            {cert.skills.slice(0, 2).join(', ')} dan
+                                            <button onclick={() => toggleSkills(`cert-${i}`)} class="font-extrabold text-gray-400 transition-colors hover:text-white hover:underline">
+                                                +{cert.skills.length - 2} Skills
+                                            </button>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+            {/each}
+        </div>
+
 	</div>
 
 	<!-- Work -->
